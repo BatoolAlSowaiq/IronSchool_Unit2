@@ -11,18 +11,16 @@ public class SchoolManagementSystem {
         // Initialize and set up the school details
         SchoolManagementMethods.setUpSchool();
 
-        //Get user command
-        boolean shouldContinue = true;
-        do{
-
+       do{
+           //Get user command
             SchoolManagementMethods.processUserCommands();
+
             //Exit from School Management System
             System.out.println("Do You want to continue? (Y/N) : " );
             String input = scanner.next();
 
-            if (input.equalsIgnoreCase("N")) shouldContinue = false;
-
-        }while(shouldContinue = false);
+            if (input.equalsIgnoreCase("N")) break;
+        }while(true);
 
         System.out.println("Thank you for Using our School Management System! Goodbye!");
         scanner.close();

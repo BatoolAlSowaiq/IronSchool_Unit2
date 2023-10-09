@@ -1,28 +1,31 @@
 import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.Map;
 import java.util.Scanner;
 
 public class SchoolManagementMethods {
     private static  HashMap<String, Teacher> teacherHashMap;
     private static HashMap<String, Student> studentHashMap;
     private static HashMap<String, Course> courseHashMap;
-    public static  Scanner scanner = new Scanner(System.in);
+
     public static String getValidStringInput(String promptToAskUser){
+
+        Scanner scanner = new Scanner(System.in);
         String stringInput;
         while (true){
             //take user input
             System.out.print(promptToAskUser);
-            stringInput = scanner.next();
+            stringInput = scanner.nextLine();
 
             //if user input is empty or too short
             if( stringInput.length() >= 3 ) break;
-            else System.out.println("Invalid Input! Name must be at least 3 character");
-
+            else {System.out.println("Invalid Input! Name must be at least 3 character");}
 
         }return stringInput;
     }
     public static int getValidIntegerInput(String promptToAskUser){
 
+        Scanner scanner = new Scanner(System.in);
         int integerInput;
         while (true){
             try{
@@ -32,7 +35,7 @@ public class SchoolManagementMethods {
 
                 //if user input is negative
                 if(integerInput >= 0) break;
-                else System.out.println("Invalid input. You must enter positive integer number");
+                else {System.out.println("Invalid input. You must enter positive integer number");}
 
                 //if user input is non-integer, handle the exception
             }catch (InputMismatchException e){
@@ -44,6 +47,7 @@ public class SchoolManagementMethods {
         }return integerInput;
     }
     public static double getValidDoubleInput(String promptToAskUser){
+        Scanner scanner = new Scanner(System.in);
         double doubleInput;
         while (true){
             try{
@@ -53,7 +57,7 @@ public class SchoolManagementMethods {
 
                 //if user input is negative
                 if(doubleInput >= 0) break;
-                else System.out.println("Invalid input. You must enter positive double number");
+                else {System.out.println("Invalid input. You must enter positive double number");}
 
                 //if user input is non-double, handle the exception
             }catch (InputMismatchException e){
@@ -65,15 +69,16 @@ public class SchoolManagementMethods {
         }return doubleInput;
     }
     public static String getValidEmail(String promptToAskUser){
+        Scanner scanner = new Scanner(System.in);
         String inputEmail;
         while (true) {
 
             //get email from user
             System.out.print(promptToAskUser);
-            inputEmail = scanner.next().trim();
+            inputEmail = scanner.nextLine().trim();
 
             if (inputEmail.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) break;
-            else System.out.println("Invalid email address. Please enter a valid email.");
+            else {System.out.println("Invalid email address. Please enter a valid email.");}
 
 
         }
@@ -105,7 +110,6 @@ public class SchoolManagementMethods {
             teacherHashMap.put(teacher.getTeacherId(),teacher);
 
         }
-
         //Getting the  number of courses from user
         int numCourses = getValidIntegerInput("Enter the number of courses: ");
 
@@ -156,11 +160,12 @@ public class SchoolManagementMethods {
                 +"\n7. SHOW TEACHERS"
                 +"\n8. LOOKUP TEACHER [TEACHER_ID]"
                 +"\n9. SHOW PROFIT");
+        System.out.println();
     }
     public static void processUserCommands(){
-
+        Scanner scanner = new Scanner(System.in);
         //Getting user's command
-        System.out.println("Please enter a command:");
+        System.out.println("Please enter your command:");
         String command = scanner.nextLine();
 
 
@@ -180,13 +185,13 @@ public class SchoolManagementMethods {
                 //Determined what to lookup for
                 switch (commandPortions[1].toUpperCase()){
                     case "COURSE":
-                        lookupCourse(commandPortions[2]);
+                        displaySpecificValueInHashMap(courseHashMap,"course",commandPortions[2]);
                         break;
                     case "STUDENT":
-                        lookupStudent(commandPortions[2]);
+                        displaySpecificValueInHashMap(studentHashMap,"student",commandPortions[2]);
                         break;
                     case "TEACHER":
-                        lookupTeacher(commandPortions[2]);
+                        displaySpecificValueInHashMap(teacherHashMap,"teacher",commandPortions[2]);
                         break;
 
                     default:
@@ -199,13 +204,13 @@ public class SchoolManagementMethods {
                 //determined what to show
                 switch (commandPortions[1].toUpperCase()){
                     case "COURSES":
-                        showCourses();
+                        displayHashMapValue(courseHashMap, "course");
                         break;
                     case "STUDENTS":
-                        showStudents();
+                        displayHashMapValue(studentHashMap, "student");
                         break;
                     case "TEACHERS":
-                        showTeachers();
+                        displayHashMapValue(teacherHashMap, "teacher");
                         break;
                     case "PROFIT":
                         showProfit();
@@ -240,7 +245,7 @@ public class SchoolManagementMethods {
             course.setMoney_earned(course.getMoney_earned()+ course.getPrice());
 
             System.out.println("Student " + student.getName() + " has been enrolled in course " + course.getName() + ".");
-        } else System.out.println("Invalid student ID or course ID.");
+        } else {System.out.println("Invalid student ID or course ID.");}
 
     }
     public static void assignTeacher(String teacherId, String courseId) {
@@ -254,58 +259,7 @@ public class SchoolManagementMethods {
             // Assign the teacher to the course
             course.setTeacher(teacher);
             System.out.println("Teacher " + teacher.getName() + " has been assigned to course " + course.getName() + ".");
-        } else System.out.println("Invalid teacher ID or course ID.");
-    }
-    public static void showCourses(){
-
-        //if there is no courses in the system.
-        if(courseHashMap.isEmpty()) System.out.println("No Course found!");
-        else{
-            System.out.println("List of Courses:");
-            courseHashMap.values().forEach(System.out::println);
-        }
-    }
-    public static void lookupCourse(String courseId){
-
-        Course course = courseHashMap.get(courseId);
-        if (course != null) System.out.println(course);
-        else System.out.println("Course not found. Please enter a valid course ID.");
-
-    }
-    public static void showStudents(){
-
-        //if there is no students in the system.
-        if(studentHashMap.isEmpty()) System.out.println("No student found!");
-        else{
-            System.out.println("List of Students:");
-            studentHashMap.values().forEach(System.out::println);
-        }
-    }
-    public static void lookupStudent(String studentId){
-
-        Student student = studentHashMap.get(studentId);
-
-        // Check if the student exists in the studentHashMap
-        if (student != null) System.out.println(student);
-        else System.out.println("Student not found. Please enter a valid student ID.");
-
-    }
-    public static void showTeachers(){
-
-        //if there is no teachers in the system.
-        if(teacherHashMap.isEmpty()) System.out.println("No Teacher found!");
-        else{
-            System.out.println("List of Teachers:");
-            teacherHashMap.values().forEach(System.out::println);
-        }
-    }
-    public static void lookupTeacher(String teacherId){
-
-        Teacher teacher = teacherHashMap.get(teacherId);
-        // Check if the teacher exists in the teacherHashMap
-        if (teacher != null) System.out.println(teacher);
-        else System.out.println("Teacher not found. Please enter a valid teacher ID.");
-
+        } else {System.out.println("Invalid teacher ID or course ID.");}
     }
     public static void showProfit(){
         double totalMoneyEarned = 0;
@@ -326,6 +280,30 @@ public class SchoolManagementMethods {
 
         // Display the profit to the user
         System.out.println("Profit: $" + profit);
+    }
+    public static <T> void displayHashMapValue(HashMap<String, T> hashMap, String type) {
+        /*
+          <T>: This is a generic type parameter declaration,
+          which allows us to use a placeholder type T in the method signature.
+          This  ensures that the method can handle different types of objects stored in the HashMap.
+        */
+        if (hashMap.isEmpty()) System.out.println("No " + type + " found!");
+        else {
+            System.out.println("List of " + type + ":");
+            hashMap.values().forEach(System.out::println);
+        }
+    }
+    public static <T> void displaySpecificValueInHashMap(HashMap<String, T> hashMap, String type, String id) {
+        /*
+          <T>: This is a generic type parameter declaration,
+          which allows us to use a placeholder type T in the method signature.
+          This  ensures that the method can handle different types of objects stored in the HashMap.
+        */
+
+        // Check if the student exists in the studentHashMap
+        if (hashMap.get(id) != null) System.out.println(hashMap.get(id));
+        else {System.out.println(type + " not found. Please enter a valid student ID.");}
+
     }
 
 }

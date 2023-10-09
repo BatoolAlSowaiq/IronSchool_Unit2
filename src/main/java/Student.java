@@ -6,7 +6,7 @@ public class Student {
     private String address;
     private String email;
     private Course course;
-    private int studentCounter = 1;
+    private static int studentCounter = 1;
 
     public Student(String name, String address, String email) {
         this.studentId = generateStudentID();
@@ -61,6 +61,6 @@ public class Student {
                 "\n------------------------";
     }
     public String generateStudentID(){
-        return "SID_"+ studentCounter++;
+        return "SID_"+ (studentCounter++);
     }
 }

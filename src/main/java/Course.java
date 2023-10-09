@@ -6,7 +6,7 @@ public class Course {
     private double price;
     private double money_earned;
     private Teacher teacher;
-    private int courseCounter = 1;
+    private static int courseCounter = 1;
 
 
     public Course(String name, double price) {
@@ -63,6 +63,6 @@ public class Course {
                 "\n------------------------";
     }
     public String generateCourseID(){
-        return "CID_"+ courseCounter++;
+        return "CID_"+ (courseCounter++);
     }
 }

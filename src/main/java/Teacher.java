@@ -4,7 +4,7 @@ public class Teacher {
     private String teacherId;
     private String name;
     private double salary;
-    private int teacherCounter = 1;
+    private static int teacherCounter = 1;
 
     public Teacher(String name, double salary) {
         this.teacherId = generateTeacherID();
@@ -39,7 +39,7 @@ public class Teacher {
                 "\n------------------------";
     }
     public String generateTeacherID(){
-        return "TID_"+ teacherCounter++;
+        return "TID_"+(teacherCounter++);
     }
 
 }
