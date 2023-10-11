@@ -1,6 +1,6 @@
 # IronSchool_Unit2
 
-# School Project
+# School Management System
 
 The School is a Java program that contain students, teachers and courses it allow to user to enroll in the school and register for courses and assign teachers to courses and so on.
 
@@ -93,7 +93,7 @@ The `Teacher` class  a Teacher in a school. It has the following properties:
 - `setSalary(double salary)`: Sets the salary for the teacher.
 
 
-## How to use
+# How the application works
 1. Compile the Java files using a Java compiler.
 2. Run the compiled program by executing the `SchoolManagementSystem` class.
 3. Once you run it,The program will ask you to Enter the name of the school: .
@@ -107,6 +107,6 @@ The `Teacher` class  a Teacher in a school. It has the following properties:
     - if you chose y (yes) then you must chose command again.
     -  if you chose n (no) the program will display this message (Thank you for Using our School Management System! Goodbye!).
 11. the end of the program!
-
-          ## Credits
+    
+## Credits
 The School Project is developed by Batool AlSowaiq, Raghad Aljohani, Lujain Abdullah alghandi, Afaf Abdullah and Yumna Alansari.
