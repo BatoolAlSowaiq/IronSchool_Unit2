@@ -33,7 +33,7 @@ public class Teacher {
     }
     @Override
     public String toString() {
-        return "Teacher Id: " + teacherId +
+        return "\nTeacher Id: " + teacherId +
                 "\nName: " + name +
                 "\nSalary: $" + salary +
                 "\n------------------------";

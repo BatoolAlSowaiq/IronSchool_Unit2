@@ -37,8 +37,8 @@ public class Course {
         return money_earned;
     }
 
-    public void setMoney_earned(double money_earned) {
-        this.money_earned = money_earned;
+    public void updateMoneyEarned() {
+        this.money_earned += this.price;
     }
 
     public Teacher getTeacher() {

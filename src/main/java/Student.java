@@ -45,7 +45,7 @@ public class Student {
     }
 
     public void setCourse(Course course) {
-        course = course;
+        this.course = course;
     }
 
     public String getStudentId() {

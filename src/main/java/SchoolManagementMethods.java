@@ -4,9 +4,11 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class SchoolManagementMethods {
-    private static  HashMap<String, Teacher> teacherHashMap;
-    private static HashMap<String, Student> studentHashMap;
-    private static HashMap<String, Course> courseHashMap;
+
+    //Hash map to store the details of teachers, student, and courses.
+    public static  HashMap<String, Teacher> teacherHashMap = new HashMap<>();
+    public static HashMap<String, Student> studentHashMap = new HashMap<>();
+    public static HashMap<String, Course> courseHashMap = new HashMap<>();
 
     public static String getValidStringInput(String promptToAskUser){
 
@@ -86,10 +88,6 @@ public class SchoolManagementMethods {
     }
     public static void setUpSchool(){
 
-        //Hash map to store the details of teachers, student, and courses.
-        teacherHashMap = new HashMap<>();
-        studentHashMap = new HashMap<>();
-        courseHashMap =  new HashMap<>();
 
         //Getting school name from user
         String schoolName = getValidStringInput("Enter the name of the school: ");
@@ -185,13 +183,13 @@ public class SchoolManagementMethods {
                 //Determined what to lookup for
                 switch (commandPortions[1].toUpperCase()){
                     case "COURSE":
-                        displaySpecificValueInHashMap(courseHashMap,"course",commandPortions[2]);
+                        lookupValueById(courseHashMap,"course",commandPortions[2]);
                         break;
                     case "STUDENT":
-                        displaySpecificValueInHashMap(studentHashMap,"student",commandPortions[2]);
+                        lookupValueById(studentHashMap,"student",commandPortions[2]);
                         break;
                     case "TEACHER":
-                        displaySpecificValueInHashMap(teacherHashMap,"teacher",commandPortions[2]);
+                        lookupValueById(teacherHashMap,"teacher",commandPortions[2]);
                         break;
 
                     default:
@@ -204,13 +202,13 @@ public class SchoolManagementMethods {
                 //determined what to show
                 switch (commandPortions[1].toUpperCase()){
                     case "COURSES":
-                        displayHashMapValue(courseHashMap, "course");
+                        showAllValue(courseHashMap, "course");
                         break;
                     case "STUDENTS":
-                        displayHashMapValue(studentHashMap, "student");
+                        showAllValue(studentHashMap, "student");
                         break;
                     case "TEACHERS":
-                        displayHashMapValue(teacherHashMap, "teacher");
+                        showAllValue(teacherHashMap, "teacher");
                         break;
                     case "PROFIT":
                         showProfit();
@@ -242,7 +240,9 @@ public class SchoolManagementMethods {
             student.setCourse(course);
 
             // Update the money_earned of the course
-            course.setMoney_earned(course.getMoney_earned()+ course.getPrice());
+            course.updateMoneyEarned();
+            System.out.println(course.getMoney_earned());
+
 
             System.out.println("Student " + student.getName() + " has been enrolled in course " + course.getName() + ".");
         } else {System.out.println("Invalid student ID or course ID.");}
@@ -274,14 +274,16 @@ public class SchoolManagementMethods {
         for (Teacher teacher : teacherHashMap.values()) {
             totalTeacherSalaries += teacher.getSalary();
         }
-
+        System.out.println(totalMoneyEarned);
+        System.out.println(totalTeacherSalaries);
+        //
         // Calculate the profit
-        double profit = totalMoneyEarned - totalTeacherSalaries;
+        double profit = totalMoneyEarned - (totalTeacherSalaries);
 
         // Display the profit to the user
         System.out.println("Profit: $" + profit);
     }
-    public static <T> void displayHashMapValue(HashMap<String, T> hashMap, String type) {
+    public static <T> void showAllValue(HashMap<String, T> hashMap, String type) {
         /*
           <T>: This is a generic type parameter declaration,
           which allows us to use a placeholder type T in the method signature.
@@ -293,7 +295,7 @@ public class SchoolManagementMethods {
             hashMap.values().forEach(System.out::println);
         }
     }
-    public static <T> void displaySpecificValueInHashMap(HashMap<String, T> hashMap, String type, String id) {
+    public static <T> void lookupValueById(HashMap<String, T> hashMap, String type, String id) {
         /*
           <T>: This is a generic type parameter declaration,
           which allows us to use a placeholder type T in the method signature.
