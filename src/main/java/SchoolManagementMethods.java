@@ -168,7 +168,7 @@ public class SchoolManagementMethods {
 
 
         //Split the input commands to identify the corresponding actions
-        String[] commandPortions = command.split(" ");
+        String[] commandPortions = command.trim().split(" ");
         switch (commandPortions[0].toUpperCase()){
 
             case "ENROLL":

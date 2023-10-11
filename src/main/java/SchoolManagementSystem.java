@@ -19,7 +19,7 @@ public class SchoolManagementSystem {
             System.out.println("Do You want to continue? (Y/N) : " );
             String input = scanner.next();
 
-            if (input.equalsIgnoreCase("N")) break;
+            if (input.trim().equalsIgnoreCase("N")) break;
         }while(true);
 
         System.out.println("Thank you for Using our School Management System! Goodbye!");
