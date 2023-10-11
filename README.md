@@ -6,6 +6,24 @@ The School is a Java program that contain students, teachers and courses it allo
 
 ## Classes
 
+# SchoolManagementMethods Class
+
+The `SchoolManagementMethods`class was created to keep main class clean and to put all static methods in it so that it becomes a reference or a library of tools and we used the hashmap to improve our data management and improve the efficiency of the software as well as speed up the processes and store all details of student, course, teacher class.
+
+## Methods
+
+- `getValidStringInput(String promptToAskUser)`: This methode is responsible forerifying the authenticity of the user's String input.
+- `getValidIntegerInput(String promptToAskUser)`: This methode is responsible forerifying the authenticity of the user's integer-type input.
+- `getValidDoubleInput(String promptToAskUser)`:This methode is responsible forerifying the authenticity of the user's double-type input.
+- `getValidEmail(String promptToAskUser)`: This methode is responsible for verifying the authenticity of the email entered by the user.
+- `setUpSchool()`:This methode is responsible for taking details of teachers, students and courses from the user and viewing the command available to the user.
+- `processUserCommands()`: This methode is responsible for validating and processing user input for commands.
+- `enrollStudent(String studentId, String courseId)`: This methode is responsible for validating students' enrolment in courses.
+- `assignTeacher(String teacherId, String courseId)`: This methode is responsible for the assign teacher in the courses.
+- `showProfit()`: This methode is responsible for calculating the profit and displaying it to the user.
+- `showAllValue(HashMap<String, T> hashMap, String type) `: This methode ensures that the method can handle different types of objects stored in the HashMap.
+- `lookupValueById(HashMap<String, T> hashMap, String type, String id)`: This methode ensures that the method can handle different types of objects stored in the HashMap.
+
 # Student Class
 
 The `Student` class represents a student in a school. It has the following properties:
