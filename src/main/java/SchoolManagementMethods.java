@@ -274,9 +274,7 @@ public class SchoolManagementMethods {
         for (Teacher teacher : teacherHashMap.values()) {
             totalTeacherSalaries += teacher.getSalary();
         }
-        System.out.println(totalMoneyEarned);
-        System.out.println(totalTeacherSalaries);
-        //
+
         // Calculate the profit
         double profit = totalMoneyEarned - (totalTeacherSalaries);
 
